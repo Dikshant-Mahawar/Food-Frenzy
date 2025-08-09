@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"] {
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>User Registration</h2>
+        <form th:action="@{/addingUser}" method="post" th:object="${user}">
+
+            <!-- Do not include u_id - it’s auto-generated -->
+
+            <label for="uname">Name</label>
+            <input type="text" id="uname" th:field="*{uname}" required />
+
+            <label for="uemail">Email</label>
+            <input type="email" id="uemail" th:field="*{uemail}" required />
+
+            <label for="upassword">Password</label>
+            <input type="password" id="upassword" th:field="*{upassword}" required />
+
+            <label for="unumber">Phone Number</label>
+            <input type="number" id="unumber" th:field="*{unumber}" required />
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

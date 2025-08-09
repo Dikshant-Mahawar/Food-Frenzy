@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Place Order</title>
+</head>
+<body>
+    <h2>Order Product</h2>
+
+    <p>Product: <span th:text="${product.pname}"></span></p>
+    <p>Price: Rs <span th:text="${product.pprice}"></span></p>
+
+    <form th:action="@{/order/submit}" method="post" th:object="${order}">
+        <!-- Pass product name and price as hidden fields -->
+        <input type="hidden" th:field="*{oName}" th:value="${product.pname}" />
+        <input type="hidden" th:field="*{oPrice}" th:value="${product.pprice}" />
+
+        <label for="oQuantity">Quantity:</label>
+        <input type="number" id="oQuantity" th:field="*{oQuantity}" min="1" value="1" required />
+
+        <button type="submit">Place Order</button>
+    </form>
+</body>
+</html>
